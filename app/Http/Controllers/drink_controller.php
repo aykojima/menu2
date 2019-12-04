@@ -88,7 +88,9 @@ class drink_controller extends Controller
                 $new_category['category_description'] = $input['category_desc']; 
                 $new_category['title_id'] = ($input['title_id']);
                 $new_category['page_number'] = ($input['page_id']);
+                $new_category['order'] = 0;
 
+                // dd($new_category);
                 $category = category::create($new_category);
 
                 $new_product['name'] = 'Edit to add a name';
@@ -117,6 +119,7 @@ class drink_controller extends Controller
                 $category->category = strtoupper($input['category_name']);
                 $category->category_description = $input['category_desc'];
                 $category->page_number = $input['page_id'];
+                $category->title_id = $input['title_id'];
                 $category->save();
                 $new_item = $input['category_name'] . " was successfully edited!"; 
                 return redirect('drinks/' . $page)->with('status', $new_item );
@@ -347,78 +350,15 @@ class drink_controller extends Controller
     public function print()
     {
         $categories = category::all();
-        //$categories = category::whereBetween('category_id', [28, 32])->get();
-
-        // function write_query($types, $column){
-        //     $array = [];
-        //     if($types == 'shochu'){
-        //         $array = ["Mugi", "Kome", "Imo", "Ume"];
-        //     }else if($types == 'whisky'){
-        //         $array = ["Suntory", "Hibiki", "Yamazaki", "Hakushu", "Nikka", "Mars", "Akashi", "Ichiro", "Ohishi", "Fukano"];
-        //     }else if($types == 'white'){
-        //         $array = ["Pinot Gris", "Txakoli", "Albarino", "Sauvignon Blanc",
-        //         "Carricante", "Chardonnay", "Chenin Blanc", "Viognier", 
-        //         "Riesling", "Gruner Veltliner"];
-        //     }else if($types == 'red'){
-        //         $array = ["Pinot Noir", "Tempranillo", "Cab Franc", 
-        //         "Cabernet Sauvignon", "Malbec", "Zinfandel"];
-        //     }
-        //     foreach($array as $key=>$type){
-        //         if($key == 0){
-        //             $query = "CASE WHEN $column LIKE '%" . $type . "%' THEN 1 ";
-        //         }else{
-        //             $order_number = $key + 1;
-        //             $query .= "WHEN $column LIKE '%" . $type ."%' THEN " . $order_number . " ";
-        //         }
-        //     }
-        //     $order_number = $order_number + 1;
-        //     return $query .= "ELSE " . $order_number . " END ASC";
-        // }
-
-        // $query_shochu = write_query('shochu', 'name');
-        // $query_whisky = write_query('whisky', 'name');
-        // $query_white = write_query('white', 'type');
-        // $query_red = write_query('red', 'type');
-
-//8 page
-//page 1 == 2 page + 1 || total -6 (Sake by the glass)
-//page 2 == 3 page + 1 || total -5 (Sake bottles#1)
-//page 3 == 8 page + 5 || total -0 (Sake bottles#2)
-//page 4 == 5 page + 1 || total -3 (Wine by the glass && Wine bottles)
-//page 5 == 6 page + 1 || total -2 (Wine bottles)
-//page 6 == 7 page + 1 || total -1 (Japanse Whiskey)
-//page 7 == 4 page - 3 || total -4 (Shochu and other spirits)
-//page 8 == 1 1 (Blank) || total -7
-
-//12page
-//page 1 == 2 page + 1 || total - 10 
-//page 2 == 3 page + 1 || total - 9 
-//page 3 == 6 page + 3 || total - 6 
-//page 4 == 7 page + 3 || total - 5 
-//page 5 == 10 page + 5 || total - 2 
-//page 6 == 11 page + 5 || total - 1 
-//page 7 == 12 page + 5 || total - 0 
-//page 8 == 9 page + 1 || total - 3 
-//page 9 == 8 page - 1 || total - 4 
-//page 10 == 5 page - 5 || total - 7 
-//page 11 == 4 page - 5 || total - 8 
-//page 12 == 1 1 (Blank) || total - 11 
-
-
-        function get_products(){
+        $page_length = category::max('page_number');
+        $titles_array = [];
+        
+        function get_products($page_length){
             $page_array = [];
             //Get page length
-            $page_length = category::max('page_number');
                             
-            if($page_length == 7 ){
-                // $page_array[0] = [];
-                $page_array[1] = [];
-                $page_array[2] = [];
-                $page_array[3] = [];
-                $page_array[4] = [];
-                $page_array[5] = [];
-                $page_array[6] = [];
-                $page_array[7] = [];
+            for($i = 0; $i<$page_length; $i++){
+                $page_array[$i] = [];
             }
 
             //get row count of category
@@ -464,6 +404,8 @@ class drink_controller extends Controller
                     array_push($category_array, $product_array);
                     
                 }//end of foreach
+
+                //re-order the pages for printing
                 if($page_length == 7){
                     switch($page_number){
                         case 1:
@@ -484,18 +426,48 @@ class drink_controller extends Controller
                         //     array_push($page_array[0], $category_array);
                         //     $page_array[0] = $category_array; 
                     }
+                    
                 }
+                    
+                if($page_length == 8){
+                    switch($page_number){
+                        case 1:
+                            $page_array[1] = $category_array;                            
+                        case 2:
+                            $page_array[2] = $category_array;
+                        case 3:
+                            $page_array[7] = $category_array;
+                        case 4:
+                            $page_array[4] = $category_array;
+                        case 5:
+                            $page_array[5] = $category_array;
+                        case 6:
+                            $page_array[6] = $category_array;
+                        case 7:
+                            $page_array[3] = $category_array;
+                        case 8:
+                            $page_array[0] = $category_array;
+                    }
+                    
+                }
+
             }//end of first for loop
             return $page_array;
         }
         
-        $titles_array = [1, 2, 3, 4, 5, 6, 7];
+        if($page_length == 7){
+            $titles_array = [1, 2, 6, 7, 3, 4, 5];
+        }else if($page_length == 8){
+            $titles_array = [6, 7, 1, 2, 5, 3, 4];
+        }
+        //$titles_array = [1, 2, 3, 4, 5, 6, 7];
         
-        $page_array = get_products();
+        $page_array = get_products($page_length);
         if(count($page_array) % 2 == 1){
             array_unshift($page_array, [[[]]]);
         }
 
+        
         // dd($page_array);
         return view('drink_menu/print_preview', compact('page_array', 'titles_array'));
     }
@@ -503,4 +475,5 @@ class drink_controller extends Controller
 
 
 }
+
 

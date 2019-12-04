@@ -1431,6 +1431,12 @@ a.edit:hover, a.add_new_drink:hover, a.edit_category:hover, a.add_new_category:h
   padding-top: 2%;
 }
 
+.border {
+  border: solid 1px #ccc;
+  padding: 22px;
+  margin: 5px 0 25px 0;
+}
+
 .drink_categories {
   margin-bottom: 5%;
 }

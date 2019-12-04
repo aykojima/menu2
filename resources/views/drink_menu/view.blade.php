@@ -18,8 +18,14 @@
                     {!! Form::select('page_id', 
                         array(0 => 'Left side / Cocktails, Beer, & Non-Alcoholic', 1 => '1 (Inside / Sake by the Glass)', 2 => '2 (Inside / Sake Bottles)', 
                         3 =>'3 (Inside / Sake Bottles)', 4 => '4 (Inside / Wine by the Glass)', 5 => '5 (Inside / Wine Bottles)', 
-                        6 => '6 (Inside / Japanese Whisky)', 7 => '7 (Inside / Shochu & Spirits)', 
+                        6 => '6 (Inside / Japanese Whisky)', 7 => '7 (Inside / Shochu & Spirits)', 8 => '8 (Inside / back)', 
                         -1 => 'right side / Specials' )) !!}
+                <label>Titles</label>
+                        {!! Form::select('title_id', 
+                        array(1 => 'SAKE BY THE GLASS', 2 => 'SAKE BOTTLES', 3 => 'WINE BY THE GLASS', 
+                        4 =>'WINE BOTTLES', 5 => 'JAPANESE WHISKEY', 6 => 'SHOCHU', 
+                        7 => 'SPIRITS', 8 => 'SPECIALTY COCKTAILS', 9 => 'BEER', 
+                        10 => 'NON ALCOHOLIC', 11 => 'DRINK SPECIALS')) !!}    
             </div>
             <div class="new_drink_form">
                 @include('layouts.forms.form_drink')
@@ -78,7 +84,7 @@
                 @endif  
                 @if ($loop->first)
                 <li id="catid_{{ $product->category_id }}">
-                    <div class="drink_title" data-id="{{ $product->category_id }}" data-category="{{ $product->category }}" data-page_number="{{ $product->page_number }}">
+                    <div class="drink_title" data-id="{{ $product->category_id }}" data-category="{{ $product->category }}" data-page_number="{{ $product->page_number }}" data-title="{{ $product->title_id }}">
                     @if($product->title_name != $product->category)
                         <p style="color: #CF671F; clear:both">{{ $product->category }}</p>
                     @else
@@ -313,6 +319,8 @@ $(document).on("click", ".edit_category", function(event){
      
     new_modal.find("select[name='page_id']")
         .val($(this).parent().data("page_number"));
+    new_modal.find("select[name='title_id']")
+        .val($(this).parent().data("title"));
 
 });
 

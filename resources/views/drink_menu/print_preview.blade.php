@@ -27,14 +27,12 @@
             <li><a href='{{ URL::to('drinks/sake')}}'><img class="home_icon header_icons" src="../images/arrow.png"></a><span>Go back to edit page</span></li>   
             <li id="print"><a href="javascript: window.print()"><img class="header_icons" src="../images/printer.png"></a><span>Print</span></li>
             <!-- <li id="print"><a href="javascript: window.print()"><img id="header_icons" src="../images/printer.png"></a><span>print</span></li> -->
-            
             <!-- <li id="new_item"><a onclick="show_add_new_div()"><img id="header_icons" src="../images/add.png"></a><span>add new item</span></li>     -->
         </ul>
     </header> 
-
     <div class="drink_container">
         @foreach($page_array as $key => $category_array) 
-            @if( $key % 2 == 0 )
+            @if( $key == 0 || $key % 2 == 0 )
                 <div class="pages">
                 <div class="page_left">
             @else
@@ -44,94 +42,95 @@
             @foreach($category_array as $product_array)
                 @foreach($product_array as $products)
                     @foreach($products as $product)
-                        @if(in_array($product->title_id, $titles_array))
-                            <div class='title_div'>
-                                <h1 class="title">{{ $product->title_name}}</h1>
-                                <p>{{ $product->title_description}}</p>
-                                <p>{{ $product->title_size}}</p>
-                            </div>
-                        @endif
+                    <!-- if the title_id equals to the first element of the array, print out the title -->
                         @if ($loop->first)
-                            <div  class="drink_title">
-                            @if($product->title_name != $product->category)
-                                <h3>{{ $product->category }}</h3>
-                            @endif
-                                <p style="color: #CCCCCC; font-size: 0.8em; line-height: 1em;">{{ $product->category_description }}</p>
+                            @php
+                            {{    
+                                if(count($titles_array) != 0 &&
+                                    $product->title_id == array_values($titles_array)[0]){
+                                        echo "<div class='title_div'>";
+                                        echo "<h1 class='title'>$product->title_name</h1>";
+                                        echo "<p>$product->title_description</p>";
+                                        echo "<p>$product->title_size</p>";
+                                        echo "</div>";
+                                        array_shift($titles_array);
+                                    }
+                            }}
+                            @endphp
+
+                            <div class="category {{$product->styling}}">
+                                <div  class="drink_title">
+                                    @if($product->title_name != $product->category && $product->styling == 'border')
+                                        <h1 class="title">{{ $product->category }}</h1>
+                                    @elseif($product->title_name != $product->category && $product->styling != 'border')      
+                                        <h3>{{ $product->category }}</h3>
+                                    @endif
+                                    <p style="color: #CCCCCC; font-size: 0.8em; line-height: 1em;">{{ $product->category_description }}</p>
+                                </div>
+                                <div class="drink_categories">
+                        @endif <!-- end of ($loop->first) -->
+                                    <div class="products">
+                                        <div>
+                                            <p class="drink_name">
+                                                {{ $product->name }} 
+                                                <small  style="font-style: italic;">{{ $product->grade }}</small>    
+                                                <small style="font-style: italic;">{{ $product->type }}</small>
+                                                @if($product->title_id == 5 || $product->title_id == 6 || $product->title_id == 7)
+                                                    <!-- Japanese Whiskey, Shochu, and Spirits page -->
+                                                    <small   style="font-style: italic;">{{ $product->description2 }}
+                                                        <span class="float_span" style="color: #CF671F; font-style: normal;">{{ $product->production_area }}</span>    
+                                                    </small> 
+                                                @endif
+                                            </p>
+                                            <p class="drink_price">{{ $product->price }}</p>
+                                            <p class="bottle_size">
+                                                @if(!empty ($product->size))    
+                                                    <small>{{ $product->size }}ml</small>
+                                                @endif
+                                                @if(!empty ($product->second_price)  )  
+                                                    {{ $product->second_price }} / 
+                                                @endif
+                                            </p>
+                                            <div class="drink_details">
+                                                <p>
+                                                    @if($product->title_id != 5 && $product->title_id != 6 && $product->title_id != 7)
+                                                        <!-- Japanese Whiskey, Shochu, and Spirits page -->   
+                                                        {{ $product->production_area }}  
+                                                    @endif
+                                                    @if(!empty ($product->rice))            
+                                                        / {{ $product->rice }} / {{ $product->sweetness }}
+                                                    @endif
+                                                    @if(!empty ($product->year))    
+                                                        @if($product->year) 
+                                                            <span>{{ $product->year }}</span>
+                                                        @endif
+                                                    @endif
+                                                </p>
+                                                <p>{{ $product->description }}</p>
+                                                @if($product->title_id != 5 && $product->title_id != 6 && $product->title_id != 7)   
+                                                    <!-- Japanese Whiskey, Shochu, and Spirits page -->
+                                                    <span>{{ $product->description2 }}</span>
+                                                @endif  
+                                            </div><!--end of drink_details-->
+                                        </div>
+                                    </div><!--end of products-->
+                        @if ($loop->last)
+                                </div>
                             </div>
-                            <div class="drink_categories">
                         @endif
-                        <div class="products">
-                            <div>
-                                <p class="drink_name">
-                                    {{ $product->name }} 
-                                    <small  style="font-style: italic;">{{ $product->grade }}</small>    
-                                    <small style="font-style: italic;">{{ $product->type }}</small>
-                                    @if($product->title_id == 5 || $product->title_id == 6 || $product->title_id == 7)
-                                    <!-- Japanese Whiskey, Shochu, and Spirits page -->
-                                    <small   style="font-style: italic;">{{ $product->description2 }}
-                                        <span class="float_span" style="color: #CF671F; font-style: normal;">{{ $product->production_area }}</span>    
-                                    </small> 
-                                    
-                                    @endif
-                                </p>
-                                <p class="drink_price">{{ $product->price }}</p>
-                                <p class="bottle_size">
-                                    @if(!empty ($product->size))    
-                                        <small>{{ $product->size }}ml</small>
-                                    @endif
-                                    @if(!empty ($product->second_price)  )  
-                                        {{ $product->second_price }} / 
-                                    @endif
-                                </p>
-                                <div class="drink_details">
-                                    <p>
-                                        @if($product->title_id != 5 && $product->title_id != 6 && $product->title_id != 7)
-                                        <!-- Japanese Whiskey, Shochu, and Spirits page -->   
-                                        {{ $product->production_area }}  
-                                        @endif
-                                        @if(!empty ($product->rice))            
-                                            / {{ $product->rice }} / {{ $product->sweetness }}
-                                        @endif
-                                        @if(!empty ($product->year))    
-                                            @if($product->year) 
-                                                <span>{{ $product->year }}</span>
-                                            @endif
-                                        @endif
-                                    </p>
-                                    <p>{{ $product->description }}</p>
-                                    @if($product->title_id != 5 && $product->title_id != 6 && $product->title_id != 7)   
-                                    <!-- Japanese Whiskey, Shochu, and Spirits page -->
-                                    <span>{{ $product->description2 }}</span>
-                                    @endif
-                                </div><!--end of drink_details-->
-                            </div>
-                        </div><!--end of products-->
-                        
-                        @php
-                        {{  $last_title = $product->title_id;
-                            if(in_array($last_title, $titles_array)){
-                                $k = array_search($last_title, $titles_array);
-                                unset($titles_array[$k]);
-                            }
-                        }}
-                        @endphp
-                        @if($loop->last)
-                    </div>
-                    @endif
                     @endforeach
                 @endforeach
             @endforeach<!--($category_array as $product_array)-->
             </div><!--end of menu-->
             @if( $key % 2 == 0 )
             </div><!--end of page_left-->
-            @else( $key % 2 == 1 )
+            @else
             </div><!--end of page_right-->
             </div><!--end of pages-->
             @endif
         @endforeach<!-- ($page_array as $key => $category_array)  -->
-        
     </div><!-- end of drink_container div -->    
-
+    
 <script>
 
 $(document).ready(function(){
