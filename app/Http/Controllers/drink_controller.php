@@ -458,7 +458,7 @@ class drink_controller extends Controller
         if($page_length == 7){
             $titles_array = [1, 2, 6, 7, 3, 4, 5];
         }else if($page_length == 8){
-            $titles_array = [6, 7, 1, 2, 5, 3, 4];
+            $titles_array = [7, 1, 2, 6, 5, 3, 4];
         }
         //$titles_array = [1, 2, 3, 4, 5, 6, 7];
         

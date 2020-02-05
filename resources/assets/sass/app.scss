@@ -1578,9 +1578,6 @@ input.add_price, input.item_prices {
   p{
     line-height: 10px;
   }
-  .drink_price{
-    padding-top: 2%;
-  }
 }
 
 .border {
@@ -1610,6 +1607,9 @@ input.add_price, input.item_prices {
   margin-bottom: 0%;
 }
 
+.font_0_8em{
+  font-size: 0.8em;
+}
 .small_margin_top {
   margin-top: 2% !important;
 }
@@ -1627,15 +1627,18 @@ input.add_price, input.item_prices {
   @extend %name_price_font_size;
 }
 
+.float_right{
+  display: block;
+  float: right;
+}
 
 .drink_price{
-  float: right;
-  position: relative;
+  text-align: right;
+  // padding-top: 2%;
   @extend %name_price_font_size;
 }
 
 p.bottle_size {
-  float: right;
   margin-right: 3px;
   position: absolute;
   right: 0px;

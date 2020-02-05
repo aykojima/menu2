@@ -58,6 +58,22 @@ div.page_right, .page_left{
   clear: both;
 }
 
+.font_size_0_9em{
+  font-size: 0.9em;
+}
+
+.font_size_0_95em{
+  font-size: 0.95em;
+}
+
+.font_size_1_03em{
+  font-size: 1.03em;
+}
+
+.font_size_1_07em{
+  font-size: 1.07em;
+}
+
 // .page8{
 //   .drink_title{
 //     h3{
@@ -100,9 +116,6 @@ div.page_right, .page_left{
   // p{
   //   line-height: 10px;
   // }
-  .drink_price{
-    padding-top: 2%;
-  }
 }
 
 .border {
@@ -147,14 +160,18 @@ div.page_right, .page_left{
   @extend %name_price_font_size;
 }
 
-.drink_price{
+.float_right{
+  display: block;
   float: right;
-  position: relative;
+  text-align: right;
+}
+.drink_price{
+  text-align: right;
+  // padding-top: 2%;
   @extend %name_price_font_size;
 }
 
 p.bottle_size {
-  float: right;
   margin-right: 3px;
   position: absolute;
   right: 0px;
@@ -273,6 +290,10 @@ h2{
 
 .no_margin_bottom{
   margin-bottom: 0;
+}
+
+.font_0_8em{
+  font-size: 0.8em;
 }
 
 .breaks{

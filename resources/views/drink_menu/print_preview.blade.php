@@ -34,9 +34,9 @@
         @foreach($page_array as $key => $category_array) 
             @if( $key == 0 || $key % 2 == 0 )
                 <div class="pages">
-                <div class="page_left">
+                <div class="page_left key_{{$key}}">        
             @else
-                <div class="page_right">
+                <div class="page_right key_{{$key}}">
             @endif
             <div class="menu">
             @foreach($category_array as $product_array)
@@ -155,74 +155,87 @@ $(document).ready(function(){
     })
     //Need to fix here
     //Make each if statement callback function so that it checks the height each time the function is called.
-    const menus = document.querySelectorAll(".menu");
-menus.forEach(menu => {
-    let num_products = menu.querySelectorAll('.products').length;
-    let num_titles = menu.querySelectorAll('.drink_title').length;
-    console.log(num_products);
-    console.warn(num_titles);
-    const title_divs = menu.querySelectorAll(".title_div");
-    const drink_titles = menu.querySelectorAll(".drink_title");
-    const products = menu.querySelectorAll(".products");
-    const drink_categories = menu.querySelectorAll(".drink_categories");
-    const drink_names = menu.querySelectorAll(".drink_name");
-    const smalls = menu.querySelectorAll("small");
-    const drink_details = menu.querySelectorAll(".drink_details");
         
-    if(num_titles >= 5){
-        title_divs.forEach(function(div, key){
-                key == 0 && div.classList.add("no_padding");
-                key >= 1 && div.classList.add("margin_top");
-            });
-        if(num_products >= 15){
-            // console.log(num_products);
-            // console.warn(num_titles);
-            // title_divs.forEach(div => div.classList.add("no_padding"));
-            
-            drink_categories.forEach(categories => categories.classList.add("no_margin_bottom"));
-            drink_titles.forEach(title => title.classList.add("no_padding"));
-            // products.forEach(product => product.classList.add("no_margin_bottom"));
-        }else if(num_products >= 12){
-            drink_categories.forEach(categories => categories.classList.add("no_margin_bottom"));
-            drink_titles.forEach(title => title.classList.add("no_padding"));
-            // products.forEach(product => product.classList.add("no_margin_bottom"));
-        }
-    }else if(num_titles >= 3){
-        // console.warn(num_titles);
-        if(num_products >=18){
-            drink_categories.forEach(categories => categories.classList.add("no_margin_bottom"));
-            // drink_titles.forEach(title => title.classList.add("no_margin_bottom"));
-            // products.forEach(product => product.classList.add("no_margin_bottom"));
-            drink_details.forEach(drink_detail => drink_detail.classList.add("small_font"));
-            menu.classList.add("no_margin_top");
-        }else if(num_products >=16){
-            drink_categories.forEach(categories => categories.classList.add("no_margin_bottom"));
-            drink_titles.forEach(title => title.classList.add("no_margin_bottom"));
-            menu.classList.add("no_margin_top");
-        }else if(num_products <= 12){
-            // console.log(num_products);
-            // console.warn(num_titles);
-            drink_categories.forEach(categories => categories.classList.add("margin_bottom12"));
-            drink_titles.forEach(drink_title => drink_title.classList.add("font1_1em"));
-        }
-    }else if(num_titles >= 1){
-            // console.log(num_products);
-            // console.warn(num_titles);
-            drink_categories.forEach(categories => categories.classList.add("margin_bottom12"));
-            drink_titles.forEach(drink_title => drink_title.classList.add("font1_1em"));
-            products.forEach(product => product.classList.add("margin_bottom3"));
-            drink_names.forEach(drink_name => drink_name.classList.remove("small_font"));
-            smalls.forEach(small => small.classList.add("breaks"));
-            // drink_names.forEach(drink_name => drink_name.classList.add("font1_3em"));
-            if(num_products >= 17){
-                drink_categories.forEach(categories => categories.classList.remove("margin_bottom12"));
-                drink_titles.forEach(drink_title => drink_title.classList.remove("font1_1em"));
-                products.forEach(product => product.classList.remove("margin_bottom3"));
-                // drink_names.forEach(drink_name => drink_name.classList.remove("font1_3em"));
-                smalls.forEach(small => small.classList.remove("breaks"));
+const first_page = document.querySelector(".key_1");
+const fourth_page = document.querySelector(".key_4");
+const sixth_page = document.querySelector(".key_6");
+const second_page = document.querySelector(".key_2");
+const third_page = document.querySelector(".key_3");
+const fifth_page = document.querySelector(".key_5");
+
+first_page.classList.add("font_size_0_9em");
+fourth_page.classList.add("font_size_0_9em");
+sixth_page.classList.add("font_size_0_9em");
+second_page.classList.add("font_size_1_03em");
+third_page.classList.add("font_size_1_07em");
+fifth_page.classList.add("font_size_0_9em");
+
+    //const menus = document.querySelectorAll(".menu");
+// menus.forEach(menu => {
+//     let num_products = menu.querySelectorAll('.products').length;
+//     let num_titles = menu.querySelectorAll('.drink_title').length;
+//     console.log(num_products);
+//     console.warn(num_titles);
+//     const title_divs = menu.querySelectorAll(".title_div");
+//     const drink_titles = menu.querySelectorAll(".drink_title");
+//     const products = menu.querySelectorAll(".products");
+//     const drink_categories = menu.querySelectorAll(".drink_categories");
+//     const drink_names = menu.querySelectorAll(".drink_name");
+//     const smalls = menu.querySelectorAll("small");
+//     const drink_details = menu.querySelectorAll(".drink_details");
+        
+
+    // if(num_titles >= 5){
+    //     title_divs.forEach(function(div, key){
+    //             key == 0 && div.classList.add("no_padding");
+    //             key >= 1 && div.classList.add("margin_top");
+    //             drink_categories.forEach(categories => categories.classList.add("font_0_8em"));
+    //         });
+    //     if(num_products >= 12){
+    //         drink_categories.forEach(categories => categories.classList.add("no_margin_bottom"));
+    //         drink_titles.forEach(title => title.classList.add("no_padding"));
+    //     }else if(num_products >= 12){
+    //         drink_categories.forEach(categories => categories.classList.add("no_margin_bottom"));
+    //         drink_titles.forEach(title => title.classList.add("no_padding"));
+    //         // products.forEach(product => product.classList.add("no_margin_bottom"));
+    //     }
+    // }else if(num_titles >= 3){
+    //     // console.warn(num_titles);
+    //     drink_categories.forEach(categories => categories.classList.add("font_0_8em"));
+    //     if(num_products >=18){
+    //         drink_categories.forEach(categories => categories.classList.add("no_margin_bottom"));
+    //         // drink_titles.forEach(title => title.classList.add("no_margin_bottom"));
+    //         // products.forEach(product => product.classList.add("no_margin_bottom"));
+    //         drink_details.forEach(drink_detail => drink_detail.classList.add("small_font"));
+    //         //menu.classList.add("no_margin_top");
+    //     }else if(num_products >=16){
+    //         drink_categories.forEach(categories => categories.classList.add("no_margin_bottom"));
+    //         drink_titles.forEach(title => title.classList.add("no_margin_bottom"));
+    //         // menu.classList.add("no_margin_top");
+    //     }else if(num_products <= 12){
+    //         // console.log(num_products);
+    //         // console.warn(num_titles);
+    //         drink_categories.forEach(categories => categories.classList.add("margin_bottom12"));
+    //         drink_titles.forEach(drink_title => drink_title.classList.add("font1_1em"));
+    //     }
+    // }else if(num_titles >= 1){
+    //         // console.log(num_products);
+    //         // console.warn(num_titles);
+    //         drink_categories.forEach(categories => categories.classList.add("margin_bottom12"));
+    //         drink_titles.forEach(drink_title => drink_title.classList.add("font1_1em"));
+    //         products.forEach(product => product.classList.add("margin_bottom3"));
+    //         drink_names.forEach(drink_name => drink_name.classList.remove("small_font"));
+    //         smalls.forEach(small => small.classList.add("breaks"));
+    //         // drink_names.forEach(drink_name => drink_name.classList.add("font1_3em"));
+    //         if(num_products >= 17){
+    //             drink_categories.forEach(categories => categories.classList.remove("margin_bottom12"));
+    //             drink_titles.forEach(drink_title => drink_title.classList.remove("font1_1em"));
+    //             products.forEach(product => product.classList.remove("margin_bottom3"));
+    //             // drink_names.forEach(drink_name => drink_name.classList.remove("font1_3em"));
+    //             smalls.forEach(small => small.classList.remove("breaks"));
                 
-            }
-    }
+    //         }
+    // }
     // console.log(menu.offsetHeight);
     
 
@@ -239,7 +252,7 @@ menus.forEach(menu => {
         
     //     products.forEach(product => product.classList.add("large_margin"))
     // }
-})
+// })
 
 
 

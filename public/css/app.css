@@ -1427,9 +1427,6 @@ a.edit:hover, a.add_new_drink:hover, a.edit_category:hover, a.add_new_category:h
 .drink_title p {
   line-height: 10px;
 }
-.drink_title .drink_price {
-  padding-top: 2%;
-}
 
 .border {
   border: solid 1px #ccc;
@@ -1454,6 +1451,10 @@ a.edit:hover, a.add_new_drink:hover, a.edit_category:hover, a.add_new_category:h
   margin-bottom: 0%;
 }
 
+.font_0_8em {
+  font-size: 0.8em;
+}
+
 .small_margin_top {
   margin-top: 2% !important;
 }
@@ -1470,13 +1471,16 @@ a.edit:hover, a.add_new_drink:hover, a.edit_category:hover, a.add_new_category:h
   float: left;
 }
 
-.drink_price {
+.float_right {
+  display: block;
   float: right;
-  position: relative;
+}
+
+.drink_price {
+  text-align: right;
 }
 
 p.bottle_size {
-  float: right;
   margin-right: 3px;
   position: absolute;
   right: 0px;
