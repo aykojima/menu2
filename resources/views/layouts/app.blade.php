@@ -26,7 +26,7 @@
         @else
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#">
-                    {{ Auth::user()->name }} 
+                    <!-- Auth::user()->name -->
                     <!-- <span class="caret"></span> -->
                 </a>
                 <div class="dropdown-menu">

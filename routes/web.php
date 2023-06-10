@@ -83,11 +83,11 @@
 
         
 
-    });
+     });
 
- Route::middleware('auth')->group( function(){
+  Route::middleware('auth')->group( function(){
     
-});
+ });
 
 Auth::routes();
 
@@ -109,3 +109,7 @@ Auth::routes();
 //   return View::make('simple', $data);
 // }
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

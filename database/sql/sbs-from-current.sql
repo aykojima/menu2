@@ -1,24 +1,24 @@
 -- Adminer 4.2.5 MySQL dump
 
-SET NAMES utf8;
-SET time_zone = '+00:00';
-SET foreign_key_checks = 0;
-SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+-- SET NAMES utf8;
+-- SET time_zone = '+00:00';
+-- SET foreign_key_checks = 0;
+-- SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP TABLE IF EXISTS `sbs`;
-CREATE TABLE `sbs` (
-  `sb_id` int(10) NOT NULL AUTO_INCREMENT,
-  `eng_name` char(128) DEFAULT NULL,
-  `jpn_name` char(128) DEFAULT NULL,
-  `origin` char(128) DEFAULT NULL,
-  `nigiri_price` decimal(4,1) DEFAULT NULL,
-  `sashimi_price` decimal(4,1) DEFAULT NULL,
-  `is_sustainable` char(5) NOT NULL,
-  `is_raw` char(5) NOT NULL,
-  `is_special` char(5) NOT NULL,
-  `is_on_menu` char(5) NOT NULL,
-  PRIMARY KEY (`sb_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `sbs`;
+-- CREATE TABLE `sbs` (
+--   `sb_id` int(10) NOT NULL AUTO_INCREMENT,
+--   `eng_name` char(128) DEFAULT NULL,
+--   `jpn_name` char(128) DEFAULT NULL,
+--   `origin` char(128) DEFAULT NULL,
+--   `nigiri_price` decimal(4,1) DEFAULT NULL,
+--   `sashimi_price` decimal(4,1) DEFAULT NULL,
+--   `is_sustainable` char(5) NOT NULL,
+--   `is_raw` char(5) NOT NULL,
+--   `is_special` char(5) NOT NULL,
+--   `is_on_menu` char(5) NOT NULL,
+--   PRIMARY KEY (`sb_id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `sb_id` (`sb_id`, `eng_name`, `jpn_name`, `origin`, `nigiri_price`, `sashimi_price`, 
 `is_sustainable`, `is_raw`, `is_special`, `is_on_menu`) VALUES

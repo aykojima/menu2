@@ -19,9 +19,12 @@
 -- Current Database: `skt_menu`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `skt_menu` /*!40100 DEFAULT CHARACTER SET utf8 */;
+-- /* CREATE DATABASE /*!32312 IF NOT EXISTS*/ `skt_menu` /*!40100 DEFAULT CHARACTER SET utf8 */; /
 
-USE `skt_menu`;
+/* USE `skt_menu`; */
+
+/* for testing purposes */
+USE `test`;
 
 --
 -- Table structure for table `bottles`

@@ -26,7 +26,7 @@ class AddStylingToCategories extends Migration
     public function down()
     {
         Schema::table('categories', function ($table) {
-            $table->string('styling', 25)->nullable();
+            $table->dropColumn('styling');
         });
     }
 }

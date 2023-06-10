@@ -173,8 +173,8 @@
                 </li>
         @endforeach<!--$category_array as $category -->
 
-        @if(Request::is('drinks/special'))
-        <div class="hh">
+        {{-- @if(Request::is('drinks/special')) --}}
+        {{-- <div class="hh">
             <h1>Happy Hour</h1>
             <div>
                 <p>1/2 Price Bottles of Sake and Wine</p>
@@ -186,8 +186,8 @@
 
             
             </div>
-        </div>
-        @endif
+        </div> --}}
+        {{-- @endif --}}
         </ul>
     </div><!--end of menu-->  
 </div><!-- end of drink_container div -->    

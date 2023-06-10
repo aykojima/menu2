@@ -26,7 +26,7 @@ class AddOrderToCategories extends Migration
     public function down()
     {
         Schema::table('categories', function ($table) {
-            $table->integer('order');
+            $table->dropColumn('order');
         });
     }
 }

@@ -25,8 +25,8 @@ class ChangeDataPriceDatatype extends Migration
      */
     public function down()
     {
-        // Schema::table('products', function (Blueprint $table) {
-        //     $table->string('price')->change();
-        // });
+        Schema::table('products', function (Blueprint $table) {
+            $table->integer('price')->change();
+        });
     }
 }

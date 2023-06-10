@@ -1,23 +1,23 @@
 -- Adminer 4.2.5 MySQL dump
 
-SET NAMES utf8;
-SET time_zone = '+00:00';
-SET foreign_key_checks = 0;
-SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
+-- SET NAMES utf8;
+-- SET time_zone = '+00:00';
+-- SET foreign_key_checks = 0;
+-- SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP TABLE IF EXISTS `ippins`;
-CREATE TABLE `ippins` (
-  `ippin_id` int(10) NOT NULL AUTO_INCREMENT,
-  `name` varchar(191) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL,
-  `is_sustainable` char(5) NOT NULL,
-  `is_raw` char(5) NOT NULL,
-  `is_gf` char(5) NOT NULL,
-  `category` char(128) NOT NULL,
-  `is_special` char(5) NOT NULL,
-  `is_on_menu` char(5) NOT NULL,
-  PRIMARY KEY (`ippin_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- DROP TABLE IF EXISTS `ippins`;
+-- CREATE TABLE `ippins` (
+--   `ippin_id` int(10) NOT NULL AUTO_INCREMENT,
+--   `name` varchar(191) DEFAULT NULL,
+--   `price` int(11) DEFAULT NULL,
+--   `is_sustainable` char(5) NOT NULL,
+--   `is_raw` char(5) NOT NULL,
+--   `is_gf` char(5) NOT NULL,
+--   `category` char(128) NOT NULL,
+--   `is_special` char(5) NOT NULL,
+--   `is_on_menu` char(5) NOT NULL,
+--   PRIMARY KEY (`ippin_id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `ippins` (`ippin_id`, `name`, `price`, `is_sustainable`, `is_raw`, `is_gf`, 
 `category`, `is_special`, `is_on_menu`) VALUES

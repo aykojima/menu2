@@ -90,24 +90,36 @@ class CreateSakeWineTable extends Migration
      */
     public function down()
     {
+        Schema::table('bottles', function($table) { 
+            $table->dropForeign(['sake_id']);
+            $table->dropColumn('sake_id');
+            $table->dropForeign(['wine_id']);
+            $table->dropColumn('wine_id');
+        });
+        
+        Schema::dropIfExists('bottles');
+
+        Schema::table('wines', function($table) { 
+            $table->dropForeign(['category_id']);
+            $table->dropColumn('category_id');
+        });
+
+        Schema::dropIfExists('wines');
+
+        Schema::table('sakes', function($table) { 
+            $table->dropForeign(['product_id']);
+            $table->dropColumn('product_id');
+        });
+        
+        Schema::dropIfExists('sakes');
 
         Schema::table('products', function($table) { 
             $table->dropForeign(['category_id']);
-        });
-        Schema::table('sakes', function($table) { 
-            $table->dropForeign(['product_id']);
-        });
-        Schema::table('wines', function($table) { 
-            $table->dropForeign(['product_id']);
-        });
-        Schema::table('bottles', function($table) { 
-            $table->dropForeign(['sake_id']);
-            $table->dropForeign(['wine_id']);
+            $table->dropColumn('category_id');
         });
         
         Schema::dropIfExists('products');
-        Schema::dropIfExists('sakes');
-        Schema::dropIfExists('wines');
-        Schema::dropIfExists('bottles');
+        
+        Schema::dropIfExists('categories');
     }
 }

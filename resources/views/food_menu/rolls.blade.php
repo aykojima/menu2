@@ -49,7 +49,7 @@
 <div id="container">
     <p class="notes">
         <img id="fish-vertical" src='images/fish.png' alt='fish' style=width:15px;> 
-        *raw or undercooked meats, poultry, seafodd, shellfish or eggs 
+        *raw or undercooked meats, poultry, seafodd, shellfish, oyster or eggs 
         may increase your risk of foodborne illness
     </p>
     <div id="menu">

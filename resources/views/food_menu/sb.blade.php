@@ -63,7 +63,7 @@
         </table>
 
         <div class="gratuity">
-            <p id='raw'>*raw or undercooked meats, poultry, seafood, shellfish or eggs 
+            <p id='raw'>*raw or undercooked meats, poultry, seafood, shellfish, oyster or eggs 
                 may increase your risk of foodborne illness
             </p>
             <p>Thank you for dining with us! A 20% living wage charge is included (dine in only). 
